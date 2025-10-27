@@ -1,0 +1,36 @@
+{
+  "name": "hng-task3",
+  "version": "1.0.0",
+  "description": "Hng task 3",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Onyedika1234/hng-task3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Onyedika1234/hng-task3/issues"
+  },
+  "homepage": "https://github.com/Onyedika1234/hng-task3#readme",
+  "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.10",
+    "redis": "^5.9.0",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.18.0"
+  }
+}
