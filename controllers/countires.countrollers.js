@@ -25,11 +25,10 @@ export const postCountry = async (req, res) => {
 
       const validateName = (name) => {
         if (!name) return;
-
         return name;
       };
       return {
-        name: validateName(countries.name),
+        name: validateName(country.name),
         capital: country.capital,
         region: country.region,
         population: country.population,
@@ -44,7 +43,7 @@ export const postCountry = async (req, res) => {
       };
     });
 
-    await Promise.all(
+    await Promise.allSettled(
       modifiedCountries.map((country) =>
         prisma.country.upsert({
           where: { name: country.name },
