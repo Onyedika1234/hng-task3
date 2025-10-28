@@ -18,8 +18,20 @@ export const fetchRate = async (url, code) => {
 
     const mainCode = code.toUpperCase();
 
-    return rate;
+    return res.rates[mainCode] || null;
   } catch (error) {
     console.error("Error in fetching exchange rate");
+    return error;
+  }
+};
+
+export const fetchAllRate = async (url) => {
+  try {
+    const data = await fetch(url);
+    const res = await data.json();
+
+    return res.rates;
+  } catch (error) {
+    console.error("Error in fetching all exchange rates");
   }
 };
