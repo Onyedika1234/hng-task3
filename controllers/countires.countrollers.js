@@ -1,5 +1,9 @@
 import { fetchAllRate, fetchCountry } from "./fetch.controllers.js";
 import prisma from "../utils/prisma.js";
+import {
+  validateName,
+  validate_gdp,
+} from "../middlewares/validate.middleware.js";
 export const postCountry = async (req, res) => {
   try {
     const countries = await fetchCountry(process.env.URL1);
@@ -23,10 +27,6 @@ export const postCountry = async (req, res) => {
       const code = country.currencies?.[0]?.code?.toUpperCase() || null;
       const exchangeRate = code && rateData?.[code] ? rateData[code] : null;
 
-      const validateName = (name) => {
-        if (!name) return;
-        return name;
-      };
       return {
         name: validateName(country.name),
         capital: country.capital,
@@ -34,11 +34,7 @@ export const postCountry = async (req, res) => {
         population: country.population,
         currency_code: code,
         exchange_rate: exchangeRate,
-        estimated_gdp:
-          exchangeRate && exchangeRate !== 0
-            ? (country.population * 1000) / exchangeRate
-            : null,
-
+        estimated_gdp: validate_gdp(currency_code, countries.currencies),
         flag_url: country.flag,
       };
     });
