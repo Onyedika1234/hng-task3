@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { fetchCountry, fetchRate } from "../controllers/fetch.controllers.js";
 import dotenv from "dotenv";
 import {
   deleteCountry,
@@ -21,5 +20,5 @@ countryRouter.get("/status", getStatus);
 countryRouter.get("/:name", getCountryByName);
 
 countryRouter.delete("/:name", deleteCountry);
-
+countryRouter.get("/image", (req, res) => res.send("Helo world"));
 export default countryRouter;
