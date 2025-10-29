@@ -34,7 +34,10 @@ export const postCountry = async (req, res) => {
         population: country.population,
         currency_code: code,
         exchange_rate: exchangeRate,
-        estimated_gdp: validate_gdp(currency_code, countries.currencies),
+        estimated_gdp: validate_gdp(
+          currency_code,
+          countries.currencies
+        ).toFixed(1),
         flag_url: country.flag,
       };
     });

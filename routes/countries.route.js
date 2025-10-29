@@ -20,5 +20,4 @@ countryRouter.get("/status", getStatus);
 countryRouter.get("/:name", getCountryByName);
 
 countryRouter.delete("/:name", deleteCountry);
-countryRouter.get("/image", (req, res) => res.send("Helo world"));
 export default countryRouter;
