@@ -6,7 +6,9 @@ import {
 } from "../middlewares/validate.middleware.js";
 export const postCountry = async (req, res) => {
   try {
-    const countries = await fetchCountry(process.env.URL1);
+    const countries = await fetchCountry(
+      "https://restcountries.com/v2/all?fields=name,capital,region,population,flag,currencies"
+    );
 
     if (!countries)
       return res.status(503).json({
@@ -14,7 +16,9 @@ export const postCountry = async (req, res) => {
         details:
           "Could not fetch data from https://restcountries.com/v2/all?fields=name,capital,region,population,flag,currencies",
       });
-    const rateData = await fetchAllRate(process.env.URL2);
+    const rateData = await fetchAllRate(
+      "https://open.er-api.com/v6/latest/USD"
+    );
 
     if (!rateData)
       return res.status(503).json({
@@ -87,7 +91,7 @@ export const getStatus = async (req, res) => {
   try {
     const countries = await prisma.country.findMany();
     const countryLength = countries.length;
-    const timeStamp = new Date().toISOString();
+    const timeStamp = countries[0].last_refreshed_at;
 
     res.status(200).json({
       total_country: countryLength,
